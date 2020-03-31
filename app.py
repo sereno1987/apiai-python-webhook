@@ -31,11 +31,11 @@ def webhook():
 def processRequest(req):
     if req.get("action") != "yahooWeatherForecast":
         return {}
-    baseurl = "https://query.yahooapis.com/v1/public/yql?"
+    baseurl = "api.openweathermap.org/data/2.5/weather?"
     yql_query = makeYqlQuery(req)
     if yql_query is None:
         return {}
-    yql_url = baseurl + urllib.urlencode({'q': yql_query}) + "&format=json"
+    yql_url = baseurl + urllib.urlencode({'q': yql_query}) + urllib.urlencode({'appid': '196ccccfa0f31691890bb8a06150d7a9'})
     print(yql_url)
 
     result = urllib.urlopen(yql_url).read()
